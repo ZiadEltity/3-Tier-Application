@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: service       # clusterIP by defualt
+metadata:
+  name: logical-tier-service
+spec:
+  selector: 
+    app: logical-tier      
+ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080

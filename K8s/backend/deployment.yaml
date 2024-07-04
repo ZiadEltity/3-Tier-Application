@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-dep
+  labels: 
+    app: logical-tier
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: logical-tier
+  
+  template:
+    metadata:
+      labels:
+        app: logical-tier
+    spec:
+      containers:
+      - name: backendend-container
+        image: public.ecr.aws/w2k2d3f8/3-tier-backend:latest
+        imagePullPolicy: Always
+        env:
+        - name: MONGO_USERNAME
+          valueFrom: 
+            secretKeyRef:
+              name: mongodb-secret
+              key: mongo-root-username
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: mongo-root-password
+        - name: db-tier-configmap
+          valueFrom:
+            configMapKeyRef:
+              name: mongodb-configmap
+              key: database_url
+        ports:
+        - containerPort: 8080

@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-dep
+  labels: 
+    app: web-tier
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-tier
+  
+  template:
+    metadata:
+      labels:
+        app: web-tier
+    spec:
+      containers:
+      - name: frontend-container
+        image: public.ecr.aws/w2k2d3f8/3-tier-frontend:latest
+        imagePullPolicy: Always
+        env:
+        - name: BACKEND_URL
+          value: logical-tier-service:8080    # the name of the backend service
+        ports:
+        - containerPort: 3000
