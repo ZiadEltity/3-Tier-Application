@@ -1,12 +1,12 @@
 ---
 apiVersion: v1
-kind: service       # clusterIP by defualt
+kind: Service
 metadata:
   name: web-tier-service
 spec:
   selector: 
-    app: web-tier      
-ports:
-  - protocol: TCP
-    port: 3000
-    targetPort: 3000
+    app: web-tier
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
