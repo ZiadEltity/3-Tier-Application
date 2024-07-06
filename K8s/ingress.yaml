@@ -1,14 +1,14 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: mainlb
+  name: main-ingress
+  namespace: default
   annotations:
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  ingressClassName: alb
+  ingressClassName: nginx
   rules:
-    - host:                                   # empty to take dns of the lb 
+    - host:   # Replace with your actual domain
       http:
         paths:
           - path: /backend
