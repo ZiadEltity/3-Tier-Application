@@ -10,6 +10,7 @@ pipeline {
         DOCKER_IMAGE_2 = 'backend'		//'backend'
         KUBE_NAMESPACE = 'default'		//'default'
         INGRESS_NAMESPACE = 'ingress-nginx'	//'ingress-nginx'
+        CLUSTER_NAME = '3-tier-cluster'
     }
 
     stages {
