@@ -47,14 +47,14 @@ pipeline {
                 script {
                     // Build and push the first Docker image
                     sh '''
-                    docker build -t ${DOCKER_IMAGE_1} -f ./Docker/frontend/Dockerfile
+                    docker build -t ${DOCKER_IMAGE_1} -f ./Docker/frontend/Dockerfile .
                     docker tag ${DOCKER_IMAGE_1}:latest ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPOSITORY_1}:latest
                     docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPOSITORY_1}:latest
                     '''
 
                     // Build and push the second Docker image
                     sh '''
-                    docker build -t ${DOCKER_IMAGE_2} -f ./Docker/backend/Dockerfile
+                    docker build -t ${DOCKER_IMAGE_2} -f ./Docker/backend/Dockerfile .
                     docker tag ${DOCKER_IMAGE_2}:latest ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPOSITORY_2}:latest
                     docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPOSITORY_2}:latest
                     '''
