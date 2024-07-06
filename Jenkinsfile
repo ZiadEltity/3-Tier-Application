@@ -4,8 +4,8 @@ pipeline {
     environment {
         AWS_REGION = 'us-east-1'   		//'your-aws-region'
         AWS_ACCOUNT_ID = '975049995182'		//'your-aws-account-id'
-        ECR_REPOSITORY_1 = 'your-ecr-repo-1'	//'your-ecr-repo-1'
-        ECR_REPOSITORY_2 = 'your-ecr-repo-2'	//'your-ecr-repo-2'
+        ECR_REPOSITORY_1 = 'public.ecr.aws/w2k2d3f8/frontend:latest'	//'your-ecr-repo-1'
+        ECR_REPOSITORY_2 = 'public.ecr.aws/w2k2d3f8/backend:latest'	//'your-ecr-repo-2'
         DOCKER_IMAGE_1 = 'frontend'		//'frontend'
         DOCKER_IMAGE_2 = 'backend'		//'backend'
         KUBE_NAMESPACE = 'default'		//'default'
@@ -65,10 +65,22 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    kubectl apply -f path/to/frontend --namespace ${KUBE_NAMESPACE}
-                    kubectl apply -f path/to/backend --namespace ${KUBE_NAMESPACE}
-                    kubectl apply -f path/to/mongo --namespace ${KUBE_NAMESPACE}
+                    kubectl apply -f ./K8s/frontend --namespace ${KUBE_NAMESPACE}
+                    kubectl apply -f ./K8s/backend --namespace ${KUBE_NAMESPACE}
+                    kubectl apply -f ./K8s/mongo-db --namespace ${KUBE_NAMESPACE}
 
+                    '''
+                }
+            }
+        }
+
+        stage('Intall Helm') {
+            steps {
+                script {
+                    sh '''
+                    sudo snap install helm --classic
+                    helm repo add eks https://aws.github.io/eks-charts
+                    helm repo update eks
                     '''
                 }
             }
@@ -91,7 +103,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    kubectl apply -f path/to/ingress.yaml --namespace ${KUBE_NAMESPACE}
+                    kubectl apply -f ./K8s/ingress.yaml --namespace ${KUBE_NAMESPACE}
                     '''
                 }
             }
