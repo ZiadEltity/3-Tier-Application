@@ -80,6 +80,10 @@ pipeline {
         }
 
         stage('Intall Helm') {
+            environment {
+                AWS_ACCESS_KEY_ID = credentials('aws-access-key')
+                AWS_SECRET_ACCESS_KEY = credentials('aws-secret-key')
+            }
             steps {
                 script {
                     sh '''
@@ -92,6 +96,10 @@ pipeline {
         }
 
         stage('Deploy Nginx Ingress Controller') {
+            environment {
+                AWS_ACCESS_KEY_ID = credentials('aws-access-key')
+                AWS_SECRET_ACCESS_KEY = credentials('aws-secret-key')
+            }
             steps {
                 script {
                     sh '''
@@ -105,6 +113,10 @@ pipeline {
         }
 
         stage('Deploy Ingress Resource') {
+            environment {
+                AWS_ACCESS_KEY_ID = credentials('aws-access-key')
+                AWS_SECRET_ACCESS_KEY = credentials('aws-secret-key')
+            }
             steps {
                 script {
                     sh '''
@@ -115,6 +127,10 @@ pipeline {
         }
 
         stage('Print DNS of Load Balancer') {
+            environment {
+                AWS_ACCESS_KEY_ID = credentials('aws-access-key')
+                AWS_SECRET_ACCESS_KEY = credentials('aws-secret-key')
+            }
             steps {
                 script {
                     def ingressName = "your-ingress-name"
