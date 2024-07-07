@@ -124,7 +124,7 @@ pipeline {
             }
             steps {
                 script {
-                    def ingressName = "your-ingress-name"
+                    def ingressName = "main-ingress"
                     def namespace = "${KUBE_NAMESPACE}"
                     def loadBalancerDNS = sh(script: "kubectl get ing ${ingressName} --namespace ${namespace} -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'", returnStdout: true).trim()
                     echo "Load Balancer DNS: ${loadBalancerDNS}"
