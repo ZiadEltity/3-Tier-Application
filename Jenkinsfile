@@ -104,7 +104,8 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    kubectl apply -f ./K8s/ingress.yaml 
+                    sleep 5
+                    kubectl apply -f ./K8s/ingress.yaml --namespace ${KUBE_NAMESPACE}
                     '''
                 }
             }
