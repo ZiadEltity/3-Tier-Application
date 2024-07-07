@@ -96,6 +96,14 @@ pipeline {
             }
         }
 
+        stage('Sleep for 5 minutes') {
+            steps {
+                // Sleep for 5 minutes (300 seconds)
+                sleep time: 30, unit: 'SECONDS'
+                echo 'Woke up after 1 minute!'
+            }
+        }
+
         stage('Deploy Ingress Resource') {
             environment {
                 AWS_ACCESS_KEY_ID = credentials('aws-access-key')
@@ -104,7 +112,6 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    sleep 5
                     kubectl apply -f ./K8s/ingress.yaml --namespace ${KUBE_NAMESPACE}
                     '''
                 }
