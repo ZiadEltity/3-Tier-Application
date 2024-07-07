@@ -48,15 +48,15 @@ pipeline {
                     // Build and push the first Docker image
                     sh '''
                     docker build -t ${DOCKER_IMAGE_1} -f ./Docker/frontend/Dockerfile Docker/frontend/
-                    docker tag ${DOCKER_IMAGE_1}:latest ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${DOCKER_IMAGE_1}
-                    docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${DOCKER_IMAGE_1}
+                    docker tag frontend:latest public.ecr.aws/w2k2d3f8/frontend:latest
+                    docker push public.ecr.aws/w2k2d3f8/frontend:latest
                     '''
 
                     // Build and push the second Docker image
                     sh '''
                     docker build -t ${DOCKER_IMAGE_2} -f ./Docker/backend/Dockerfile Docker/backend/
-                    docker tag ${DOCKER_IMAGE_2}:latest ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${DOCKER_IMAGE_2}
-                    docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${DOCKER_IMAGE_2}
+                    docker tag backend:latest public.ecr.aws/w2k2d3f8/backend:latest
+                    docker push public.ecr.aws/w2k2d3f8/backend:latest
                     '''
                 }
             }
