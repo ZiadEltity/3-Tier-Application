@@ -47,6 +47,7 @@ pipeline {
                 script {
                     // Build and push the first Docker image
                     sh '''
+                    aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com                    
                     docker build -t ${DOCKER_IMAGE_1} -f ./Docker/frontend/Dockerfile Docker/frontend/
                     docker tag frontend:latest public.ecr.aws/w2k2d3f8/frontend:latest
                     docker push public.ecr.aws/w2k2d3f8/frontend:latest
@@ -54,6 +55,7 @@ pipeline {
 
                     // Build and push the second Docker image
                     sh '''
+                    aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
                     docker build -t ${DOCKER_IMAGE_2} -f ./Docker/backend/Dockerfile Docker/backend/
                     docker tag backend:latest public.ecr.aws/w2k2d3f8/backend:latest
                     docker push public.ecr.aws/w2k2d3f8/backend:latest
