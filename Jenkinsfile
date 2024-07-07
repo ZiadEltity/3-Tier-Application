@@ -78,23 +78,7 @@ pipeline {
                 }
             }
         }
-
-        stage('Intall Helm') {
-            environment {
-                AWS_ACCESS_KEY_ID = credentials('aws-access-key')
-                AWS_SECRET_ACCESS_KEY = credentials('aws-secret-key')
-            }
-            steps {
-                script {
-                    sh '''
-                    sudo snap install helm --classic
-                    helm repo add eks https://aws.github.io/eks-charts
-                    helm repo update eks
-                    '''
-                }
-            }
-        }
-
+        
         stage('Deploy Nginx Ingress Controller') {
             environment {
                 AWS_ACCESS_KEY_ID = credentials('aws-access-key')
