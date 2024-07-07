@@ -96,9 +96,8 @@ pipeline {
             }
         }
 
-        stage('Sleep for 5 minutes') {
+        stage('Initialize Nginx Ingress Controller') {
             steps {
-                // Sleep for 5 minutes (300 seconds)
                 sleep time: 30, unit: 'SECONDS'
                 echo 'Woke up after 1 minute!'
             }
