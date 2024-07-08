@@ -1,1 +1,1 @@
-# Three-Tier Application Deployment using AWS and Kubernetes
+# Three-Tier Application Deployment 
