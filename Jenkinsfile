@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         AWS_REGION = 'us-east-1'   		//'your-aws-region'
-        AWS_ACCOUNT_ID = '975049995182'		//'your-aws-account-id'
+        AWS_ACCOUNT_ID = '180899995182'		//'your-aws-account-id'
         ECR_REPOSITORY_1 = 'public.ecr.aws/w2k2d3f8/frontend:latest'	//'your-ecr-repo-1'
         ECR_REPOSITORY_2 = 'public.ecr.aws/w2k2d3f8/backend:latest'	//'your-ecr-repo-2'
         DOCKER_IMAGE_1 = 'frontend'		//'frontend'
