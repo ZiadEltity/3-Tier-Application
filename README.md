@@ -1,6 +1,6 @@
 # Three-Tier Application Deployment 
 
-![final_photo](https://github.com/user-attachments/assets/a5954187-ec8c-496f-afb8-ba0b35f795e8)
+![finalllllllllllll](https://github.com/user-attachments/assets/64ce2d6c-e299-4acc-a851-3570393fffb7)
 
 This repository contains the code and configuration for deploying a three-tier application using Docker, Kubernetes, and AWS services. The project showcases a complete CI/CD pipeline for a web application using Jenkins, with automated notifications through Slack.
 
