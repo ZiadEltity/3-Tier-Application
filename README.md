@@ -130,7 +130,7 @@ pipeline {
         }
 ```
 
-### All deployment configuration for EKS 
+### Deployment configuration for EKS 
 
 ```groovy
         stage('Deploy Frontend, Backend, and MongoDB') {
@@ -145,6 +145,11 @@ pipeline {
                 }
             }
         }
+```
+
+### Deploy Nginx Ingress Controller Using Helm
+
+```groovy
         stage('Deploy Nginx Ingress Controller') {
             steps {
                 script {
